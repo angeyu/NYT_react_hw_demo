@@ -13,6 +13,8 @@ router.get('/api/article', (req, res) => {
 
 router.post('/api/article/new', (req, res) => {
 	const { title, url } = req.body
+	console.log(title)
+	console.log(url)
 	const newArticle = new Article({ title, url })
 	newArticle.save((err, savedArticle) => {
 		if (err) return res.json(err)
@@ -20,6 +22,12 @@ router.post('/api/article/new', (req, res) => {
 	})
 })
 
+router.post('/api/article/remove', (req, res) => {
+	const { id } = req.body
+	Article.remove({ _id: id }, (err, msg) => {
+		res.json({ err, msg })
+	})
+})
 // router.get('/api/lostitem', (req, res) => {
 // 	LostItem.find({}).exec((err, allItems) => {
 // 		console.log(allItems)

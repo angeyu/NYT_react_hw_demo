@@ -11,6 +11,7 @@ app.use(
 		extended: false
 	})
 )
+app.use(bodyParser.json())
 
 /* Mongo Database
 * - this is where we set up our connection to the mongo database
@@ -33,6 +34,16 @@ db.once('open', () => {
 * - this is where we set up the API routes for our application
 * - Remember those 4 HTTP verbs ;)
 */
+// ==== if its production environment!
+if (process.env.NODE_ENV === 'production') {
+	const path = require('path')
+	console.log('YOU ARE IN THE PRODUCTION ENV')
+	app.use('/static', express.static(path.join(__dirname, '../build/static')))
+	app.get('/', (req, res) => {
+		res.sendFile(path.join(__dirname, '../build/'))
+	})
+}
+
 app.use(require('./controllers/apiRoutes'))
 // app.get('/api/data', (req, res) => {
 // 	res.json({ data: ['a', 'b', 'c'] })

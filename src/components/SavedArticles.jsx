@@ -9,6 +9,14 @@ const SavedArticles = props => {
 						{item.title}
 					</a>
 				</p>
+				{/*  REMOVE HERE WITH THE ID*/}
+				<button
+					onClick={() => {
+						props._removeArticle(item._id)
+					}}
+				>
+					Remove
+				</button>
 			</li>
 		)
 	})

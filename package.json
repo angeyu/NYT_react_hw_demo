@@ -16,11 +16,12 @@
 		"react-scripts": "1.0.7"
 	},
 	"scripts": {
-		"start": "react-scripts start",
+		"start": "node server/server.js",
 		"build": "react-scripts build",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject",
-		"dev": "concurrently \"react-scripts start\" \"nodemon server/server.js\""
+		"dev": "concurrently \"react-scripts start\" \"nodemon server/server.js\"",
+		"local-prod": "export NODE_ENV=\"production\" && node server/server.js"
 	},
 	"proxy": "http://localhost:8080"
 }

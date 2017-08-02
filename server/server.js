@@ -19,7 +19,7 @@ mongoose.promise = Promise
 if (process.env.MONGODB_URI) {
 	mongoose.connect(process.env.MONGODB_URI)
 } else {
-	mongoose.connect('mongodb://localhost/mern-boilerplate') // local mongo url
+	mongoose.connect('mongodb://localhost/nyt-react-hw') // local mongo url
 }
 const db = mongoose.connection
 db.on('error', err => {

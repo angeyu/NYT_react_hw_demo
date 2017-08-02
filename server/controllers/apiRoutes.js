@@ -1,9 +1,23 @@
 const express = require('express')
 const router = express.Router()
 // const LostItem = require('../models/LostItem')
+const Article = require('../models/Article')
 
-router.post('/api/article/save', (req, res) => {
-	res.json({ test: 'yo' })
+router.get('/api/article', (req, res) => {
+	Article.find({}, (err, allArticles) => {
+		res.json(allArticles)
+	})
+
+	// res.json({ data: 'here is some data' })
+})
+
+router.post('/api/article/new', (req, res) => {
+	const { title, url } = req.body
+	const newArticle = new Article({ title, url })
+	newArticle.save((err, savedArticle) => {
+		if (err) return res.json(err)
+		return res.json(savedArticle)
+	})
 })
 
 // router.get('/api/lostitem', (req, res) => {
